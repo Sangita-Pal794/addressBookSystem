@@ -143,9 +143,21 @@ public class main {
 	            }
 	            System.out.println("Edited Details: " + user.findContact(tempID));
 	        }
+	        public void deleteContactScreen() {
+		        String tempFirst, tempLast, tempID;
+		        Scanner scan = new Scanner(System.in);
+		        System.out.println("Enter the First Name of the Contact to be Edited: ");
+		        tempFirst = scan.nextLine();
+		        System.out.println("Enter the Last Name of the Contact to be Edited: ");
+		        tempLast = scan.nextLine();
+		        tempID = tempFirst.concat(tempLast);
+		        user.deleteContact(tempID);
+		        System.out.println("\nContact Deleted Successfully!");
+		    }
 
-	        public Map<String, Contact> displayAddressBook() {
-	            return user.getContactList();
+		    /* Method to display All the Contacts of the Address Book*/
+		    public Map<String, Contact> displayAddressBook() {
+		        return user.getContactList();
 	        }
 	    }
 	
