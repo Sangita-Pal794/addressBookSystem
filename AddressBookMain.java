@@ -15,24 +15,68 @@ public class main {
 	            System.out.println("\n1. Add New Contact"
 	                            + "\n2. Edit Contact"
 	                            + "\n3. Display Address Book"
-	                            + "\n4. Exit Address Book");
+	                            + "\n4. Delete Contact"
+	                            + "\n4. Sort Address Book Alphabetically"
+	                            + "\n5. Sort Address Book by City"
+	                            + "\n6. Sort Address Book by State"
+	                            + "\n7. Sort Address Book by Zip"
+	                            + "\n8. View City Dictionary Contacts"
+	                            + "\n9. View State Dictionary Contacts"
+	                            + "\n10. Search Contacts by City"
+	                            + "\n11. Search Contacts by State"
+	                            + "\n12. Exit Address Book");
 	            System.out.println("Enter Option: ");
 	            int choice = sc.nextInt();
 
 	            switch (choice) {
-	                case 1:
-	                    usrApp.newContactEntry();
-	                    break;
-	                case 2:
-	                    usrApp.editContactScreen();
-	                    break;
-	                case 3:
-	                    System.out.println(usrApp.displayAddressBook());
-	                    break;
-	                case 4:
-	                    System.out.println("\nExiting Application ... Closed!");
-	                    break app;
-	                default:
+                case 1:
+                    usrApp.newContactEntry();
+                    break;
+                case 2:
+                    usrApp.editContactScreen();
+                    break;
+                case 3:
+                    usrApp.streamDisplayAddressBook();
+                    break;
+                case 4:
+                    usrApp.deleteContactScreen();
+                    break;
+                case 5:
+                    System.out.println("\nAddress Book Sorted Alphabetically below:");
+                    usrApp.user.sortAlphabetically(usrApp.user.getContactList());
+                    break;
+                case 6:
+                    System.out.println("\nAddress Book Sorted by City below:");
+                    usrApp.user.sortByCity(usrApp.user.getContactList());
+                    break;
+                case 7:
+                    System.out.println("\nAddress Book Sorted by State below:");
+                    usrApp.user.sortByState(usrApp.user.getContactList());
+                    break;
+                case 8:
+                    System.out.println("\nAddress Book Sorted by Zip below:");
+                    usrApp.user.sortByZip(usrApp.user.getContactList());
+                    break;
+                case 9:
+                    System.out.println("\nContacts by City: ");
+                    usrApp.displayMapContents(usrApp.user.cityDictionary(usrApp.user.getContactList()));
+                    break;
+                case 10:
+                    System.out.println("Contacts by State: ");
+                    usrApp.displayMapContents(usrApp.user.stateDictionary(usrApp.user.getContactList()));
+                    break;
+                case 11:
+                    System.out.println("Search by City results: ");
+                    usrApp.searchByCityScreen();
+                    break;
+                case 12:
+                    System.out.println("Search by State results: ");
+                    usrApp.searchByStateScreen();
+                    break;
+                case 13:
+                    System.out.println("\nExiting ... Application Closed!");
+                    break app;
+	            default:
 	                    System.out.println("\nError: Invalid option...\nTry Again...");
 	                    break;
 	            }
@@ -156,9 +200,56 @@ public class main {
 		    }
 
 		    /* Method to display All the Contacts of the Address Book*/
-		    public Map<String, Contact> displayAddressBook() {
-		        return user.getContactList();
+	        /**
+	         * Method to display All the Contacts of the Address Book
+	         */
+	        public void streamDisplayAddressBook() {
+	            if (user.getContactList().isEmpty()) {
+	                System.out.println("\nAddress Book is Empty! Add New Contacts!");
+	            } else {
+	                user.getContactList()
+	                        .forEach((fullName, people) -> {
+	                            System.out.println();
+	                            System.out.print(fullName);
+	                            System.out.print(people);
+	                            System.out.println();
+	                        });
+	            }
 	        }
+
+	        /**
+	         * Methods to search Contacts by City & State using Java Streams
+	         */
+	        public void searchByCityScreen() {
+	            String city;
+	            Scanner scan = new Scanner(System.in);
+	            System.out.println("Enter City: ");
+	            city = scan.nextLine();
+	            user.searchByCity(user.getContactList(), city);
+	        }
+
+	        public void searchByStateScreen() {
+	            String state;
+	            Scanner scan = new Scanner(System.in);
+	            System.out.println("Enter State: ");
+	            state = scan.nextLine();
+	            user.searchByState(user.getContactList(), state);
+	        }
+
+	        /**
+	         * Method to Pass a Map and Print out its Contents
+	         * @param mapToBeDisplayed
+	         */
+	        public void displayMapContents(Map<String, Contact> mapToBeDisplayed) {
+	            mapToBeDisplayed.forEach((id, people) -> {
+	                System.out.println();
+	                System.out.print(id);
+	                System.out.print(people);
+	                System.out.println();
+	            });
+	        }
+	    
+
 	    }
 	
 	

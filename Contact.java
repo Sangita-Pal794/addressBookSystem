@@ -7,6 +7,7 @@ public class Contact {
     private String state;
     private int zip;
     private long phoneNumber;
+    private String id;
 
     /*Constructor*/
     public Contact(String firstName, String lastName, String city, String state, int zip, int phoneNumber) {
@@ -16,6 +17,7 @@ public class Contact {
         this.state = state;
         this.zip = zip;
         this.phoneNumber = phoneNumber;
+        this.id = firstName.concat(" ").concat(lastName);
     }
 
     /*Getters & Setters*/
@@ -65,6 +67,14 @@ public class Contact {
 
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+    
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    public String getId() {
+        return id;
     }
 
     /*Overriding the toString method to return the content as per preference*/
