@@ -1,4 +1,4 @@
-	import java.security.Key;
+	//import java.security.Key;
 	import java.util.*;
 	import java.util.function.Function;
 	import java.util.stream.Collectors;
@@ -100,7 +100,7 @@
 
 	    /**
 	     * Method to Check for Duplicate Contacts using Java Streams
-	     * @param fullName
+	     * @parameter fullName
 	     * @return duplicateContact
 	     */
 	    public Contact duplicateEntry(String fullName) {
@@ -114,7 +114,7 @@
 
 	    /**
 	     * Using Java Streams to Sort the Address Book Alphabetically
-	     * @param addressBook
+	     * @parameter addressBook
 	     */
 	    @Override
 	    public void sortAlphabetically(Map<String, Contact> addressBook) {
@@ -235,7 +235,7 @@
 
 	    
 	    
-	}
+	
 
 	
 
